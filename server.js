@@ -1,3 +1,5 @@
+import { addProduct } from './helpers/products'
+
 const express = require('express')
 const path = require('path')
 const app = express()
@@ -51,6 +53,9 @@ const server = async() => {
   })
   app.listen(process.env.PORT || 8080);
   console.log('server listening to ', process.env.PORT || 8080)
+
+  console.log('Creating a sample product')
+  await addProduct('Test product')
 
 }
 
