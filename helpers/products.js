@@ -15,7 +15,7 @@ export const addProduct = async(name) => {
 }
 
 
-const getProducts = async(userId, filters, page, limit) => {
+export const getProducts = async(userId, filters, page, limit) => {
   var options = {
     page: page,
     limit: limit ? limit : 10,
@@ -32,4 +32,3 @@ const getProducts = async(userId, filters, page, limit) => {
 
 }
 
-module.exports.getProducts = getProducts

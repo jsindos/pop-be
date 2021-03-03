@@ -46,7 +46,7 @@ const server = async() => {
   app.use(express.json())
   app.use(express.static(path.join(__dirname, 'build')))
   app.use(logger('dev'))
-  app.use('/endpoints', apiRouter)
+  app.use('/api', apiRouter)
   app.use(methodOverride('_method'))
   app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))

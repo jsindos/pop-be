@@ -2,8 +2,6 @@
 
 run node generateKeypair.js to generate keypair on server
 
-run npm run dev to start server
-
 
 ##Add .env file
 
@@ -20,7 +18,10 @@ PORT=8081
 
 In the project directory, you can run:
 
-### `npm run dev`
-Start Development
+### Start Development
+
+1. run npm run dev to start server
+
+2. call get: http://localhost:8081/api/products/list
 
  
