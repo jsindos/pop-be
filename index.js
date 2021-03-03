@@ -3,17 +3,23 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
+const { StaticApp } = require('@keystonejs/app-static');
+
 const initialiseData = require('./initial-data');
 
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
 const PROJECT_NAME = 'pop-be';
 const adapterConfig = { mongoUri: 'mongodb://localhost/pop-be' };
 
+const lists = require('./lists')
 
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== 'true' && initialiseData,
 });
+
+// Init lists
+lists(keystone)
 
 // Access control functions
 const userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.isAdmin);
@@ -79,5 +85,13 @@ module.exports = {
       enableDefaultRoute: true,
       authStrategy,
     }),
+    new StaticApp({
+      path: '/admin/assets',
+      src: './assets',
+      fallback: 'index.html',
+    })
   ],
 };
+
+
+
