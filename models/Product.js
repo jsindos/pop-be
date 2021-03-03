@@ -9,11 +9,11 @@ var product = new Schema({
 
 
 product.plugin(mongoosePaginate);
-product.index({name: 'text', 'name': 'text'});
+product.index({name: 'text', 'name': 'text'})
 
 // Compile model from schema
-const Page = mongoose.model('Page', product );
+const Page = mongoose.model('Page', product )
 
-module.exports.Page = Page;
+module.exports.Page = Page
 
 

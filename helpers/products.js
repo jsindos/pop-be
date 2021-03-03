@@ -1,13 +1,10 @@
-const Page = require('../models/Product').Page;
-const { ObjectId } = require('mongodb');
-
-
-
+const Product = require('../models/Product').Product
+const { ObjectId } = require('mongodb')
 
 const getProducts = async(userId, filters, page, limit) => {
   try {
 
-
+   return await Product.find({})
   }
   catch(error) {
     console.log(error, 'logging error getting jobs')
