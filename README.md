@@ -19,12 +19,14 @@ run node generateKeypair.js to generate keypair on server
 
 ##Add .env file
 
-REACT_APP_BACKEND_URL=http://localhost:8080/api/
 DATABASE_URI=mongodb://127.0.0.1:27017
-DATABASE_STAGING=
+DATABASE_STAGING=mongodb://127.0.0.1:27017
 DATABASE_DEV=mongodb://127.0.0.1:27017
-DATABASE_PRODUCTION=
+DATABASE_PRODUCTION=mongodb://127.0.0.1:27017
+ORIGIN=http://localhost:3000
+NODE_ENV=development
 PORT=8081
+
 
 ## Available Scripts
 

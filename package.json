@@ -1,9 +1,7 @@
 {
   "scripts": {
-    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true nodemon --exec keystone dev",
-    "build": "cross-env NODE_ENV=production keystone build",
-    "start": "cross-env NODE_ENV=production keystone start",
-    "create-tables": "cross-env CREATE_TABLES=true keystone create-tables"
+    "dev": "nodemon -r esm server.js",
+    "start": "node index.js"
   },
   "name": "pop-backend",
   "version": "0.1.0",
