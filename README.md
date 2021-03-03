@@ -1,5 +1,6 @@
 ### 1. Create keypair on server for JWT
 
+
 run node generateKeypair.js to generate keypair on server
 
 
@@ -15,9 +16,10 @@ PORT=8081
 
 
 ### 3. Start Development
+1. npm install
 
-1. run npm run dev to start server
+2. run npm run dev to start server
 
-2. call get: http://localhost:8081/api/products/list
+3. call get: http://localhost:8081/api/products/list
 
  
