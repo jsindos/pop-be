@@ -1,4 +1,5 @@
 import { addProduct } from './helpers/products'
+import { createUser } from './helpers/users'
 
 const express = require('express')
 const path = require('path')
@@ -11,7 +12,7 @@ const session = require('express-session')
 const apiRouter = require('./api')
 const methodOverride = require('method-override')
 const cors = require("cors")
-
+const utils = require('./utils')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -54,8 +55,14 @@ const server = async() => {
   app.listen(process.env.PORT || 8080);
   console.log('server listening to ', process.env.PORT || 8080)
 
-  console.log('Creating a sample product')
+  console.log('Setting up user and product')
+  const saltHash = utils.genPassword('test123')
+  const salt = saltHash.salt
+  const hash = saltHash.hash
+  await createUser({username: 'tester', salt, hash})
   await addProduct('Test product')
+
+  console.log('Testuser: username: tester, pw: test123')
 
 }
 

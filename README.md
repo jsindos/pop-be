@@ -20,6 +20,7 @@ PORT=8081
 
 2. run npm run dev to start server
 
-3. call get: http://localhost:8081/api/products/list
+3. use get: http://localhost:8081/api/user/login  {"username": "tester", "password": "test123"} to get auth token for authentication
 
- 
+4. Add Authorization Token and get products with authenticated user (tester) http://localhost:8081/api/products/list
+

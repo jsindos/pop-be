@@ -6,7 +6,7 @@ const passport = require('passport')
 //Add to route to make only accessible to users with auth token
 //passport.authenticate('jwt', { session: false })
 
-router.get('/list' ,async function (req, res) {
+router.get('/list', passport.authenticate('jwt', { session: false }), async function (req, res) {
   try {
     let page = req.query.page
     let limit = req.query.limit
