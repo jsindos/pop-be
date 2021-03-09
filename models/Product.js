@@ -7,13 +7,10 @@ var product = new Schema({
   name: { type: String }
 })
 
-
-product.plugin(mongoosePaginate);
-product.index({name: 'text', 'name': 'text'})
+product.plugin(mongoosePaginate)
+product.index({ name: 'text' })
 
 // Compile model from schema
-const Product = mongoose.model('Product', product )
+const Product = mongoose.model('Product', product)
 
 module.exports.Product = Product
-
-

@@ -11,39 +11,34 @@ const flash = require('express-flash')
 const session = require('express-session')
 const apiRouter = require('./api')
 const methodOverride = require('method-override')
-const cors = require("cors")
+const cors = require('cors')
 const utils = require('./utils')
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  require('dotenv').config()
 }
 
-
-//Init all cron jobs.
-if(process.env.NODE_ENV === 'production') {
+// Init all cron jobs.
+if (process.env.NODE_ENV === 'production') {
   console.log('running environemt production')
-
 }
 
-
-const server = async() => {
-
- try{
-   console.log('start server')
-    await mongoose.connect(process.env.DATABASE_URI, { dbName:'pop', useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true  })
+const server = async () => {
+  try {
+    console.log('start server')
+    await mongoose.connect(process.env.DATABASE_URI, { dbName: 'pop', useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true })
     console.log('connected to database')
-
-  }catch(err){
+  } catch (err) {
     console.log(err)
   }
-  require('./passport-config')(passport);
+  require('./passport-config')(passport)
 
-  app.use(cors({origin: '*'}))
+  app.use(cors({ origin: '*' }))
   app.use(express.urlencoded({ extended: false }))
   app.use(flash())
   app.use(passport.initialize())
   app.use(methodOverride('_method'))
-// Parse JSON bodies (as sent by API clients)
+  // Parse JSON bodies (as sent by API clients)
   app.use(express.json())
   app.use(express.static(path.join(__dirname, 'build')))
   app.use(logger('dev'))
@@ -52,18 +47,17 @@ const server = async() => {
   app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))
   })
-  app.listen(process.env.PORT || 8080);
+  app.listen(process.env.PORT || 8080)
   console.log('server listening to ', process.env.PORT || 8080)
 
   console.log('Setting up user and product')
   const saltHash = utils.genPassword('test123')
   const salt = saltHash.salt
   const hash = saltHash.hash
-  await createUser({username: 'tester', salt, hash})
+  await createUser({ username: 'tester', salt, hash })
   await addProduct('Test product')
 
   console.log('Testuser: username: tester, pw: test123')
-
 }
 
 server()
