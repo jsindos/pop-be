@@ -1,4 +1,3 @@
-import { addProduct } from './helpers/products'
 import { createUser } from './helpers/users'
 
 const express = require('express')
@@ -26,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 const server = async () => {
   try {
     console.log('start server')
-    await mongoose.connect(process.env.DATABASE_URI, { dbName: 'pop', useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true })
+    await mongoose.connect(process.env.DATABASE_URI, { dbName: 'pop-be', useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true })
     console.log('connected to database')
   } catch (err) {
     console.log(err)
@@ -55,7 +54,7 @@ const server = async () => {
   const salt = saltHash.salt
   const hash = saltHash.hash
   await createUser({ username: 'tester', salt, hash })
-  await addProduct('Test product')
+  // await addProduct('Test product')
 
   console.log('Testuser: username: tester, pw: test123')
 }

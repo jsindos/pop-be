@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const productsRouter = require('./endpoints/products')
-const userRouter = require('./endpoints/user')
+const products = require('./products/routes')
+const user = require('./endpoints/user')
 
 router.get('/', async function (req, res) {
   try {
@@ -9,7 +9,7 @@ router.get('/', async function (req, res) {
   }
 })
 
-router.use('/products', productsRouter)
-router.use('/user', userRouter)
+router.use('/products', products)
+router.use('/user', user)
 
 module.exports = router
